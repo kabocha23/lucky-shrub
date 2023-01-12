@@ -1,3 +1,4 @@
+/* page base styles */
 body {
     display: flex;
     flex-direction: column;
@@ -26,6 +27,7 @@ header > img {
     height: 200px;
 }
 
+/* nav menu */
 nav {
     height: 5rem;
 }
@@ -48,11 +50,13 @@ nav ul li a {
     color: rgb(0, 27, 34);
     font-size: 2rem;
     font-weight: 700;
+    transition: color 0.25s ease-in-out; 
 }
 nav ul li a:hover {
     color: rgb(22,122,146);
 }
 
+/* main general styles */
 main {
     width: 100%;
     margin-top: 1rem;
@@ -66,6 +70,91 @@ article {
     flex: 1;
 }
 
+/* main > intro section */
+#intro {
+    width: 100%;
+    background:linear-gradient(0deg, rgba(22,122,146, 1), rgba(22,122,146, 0.5)), url(../images/GARDENING.jfif);
+    background-size:cover;
+}
+#intro h1 {
+    color: white;
+    margin: 2rem 2rem 0rem 2rem;
+}
+
+#intro p {
+    color: white;
+    margin: 2rem 2rem 2rem 2rem;
+}
+#intro h1 {
+    font-size: 5rem;
+}
+#intro p {
+    font-size: 2rem;
+}
+
+/* main > products section */
+#products {
+    display: flex;
+    flex-wrap: wrap;
+}
+#products article>a {
+    text-decoration: none;
+}
+#products article>a>* {
+    transition: color 0.25s ease-in-out;    
+}
+#products article>a:hover > * {
+    color:rgba(85, 122, 149, 1);
+}
+.plant-types {
+    flex-wrap: wrap;
+}
+.plant-types h1 {
+    font-size: 3rem;
+    margin: 0.75rem;
+}
+.plant-types p {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0.75rem;
+}
+#shrubs {
+    background: linear-gradient(0deg, rgba(202, 250, 254, 0.8), rgba(202, 250, 254, 0.5), rgba(202, 250, 254, 0.8)), url(../images/SHRUBS.jpg);
+    background-size: cover;
+    padding: 1.5rem;
+}
+#shrubs h1 {
+    color: rgba(5, 56, 107, 1);
+}
+#shrubs p {
+    color: rgba(5, 56, 107, 1);
+}
+
+#perennials {
+    background: linear-gradient(0deg, rgba(202, 250, 254, 0.8), rgba(202, 250, 254, 0.5), rgba(202, 250, 254, 0.8)), url(../images/PERENNIALS.jfif);
+    background-size:cover;
+    padding: 1.5rem;
+}
+#perennials h1 {
+    color: rgba(5, 56, 107, 1);
+}
+#perennials p {
+    color: rgba(5, 56, 107, 1);
+}
+
+#grasses {
+    background: linear-gradient(0deg, rgba(202, 250, 254, 0.8), rgba(202, 250, 254, 0.5), rgba(202, 250, 254, 0.8)), url(../images/GRASSES.jpg);
+    background-size:cover;
+    padding: 1.5rem;
+}
+#grasses h1 {
+    color: rgba(5, 56, 107, 1);
+}
+#grasses p {
+    color: rgba(5, 56, 107, 1);
+}
+
+/* footer section */
 footer {
     display: flex;
     flex-direction: column-reverse;
@@ -79,40 +168,11 @@ footer div {
 footer div > p {
     margin-left: auto;
     margin-right: auto;
+    font-size: 1.5rem;
 }
 
 footer div > img {
     margin-left: auto;
     margin-right: auto;
-    height: 100px;
-}
-
-#our-story {
-    background:linear-gradient(0deg, rgba(22,122,146, 1), rgba(22,122,146, 0.5)), url(../images/GARDENING.jfif);
-    background-size:cover;
-}
-#our-story h1 {
-    color: white;
-    margin: 2rem 2rem 0rem 2rem;
-}
-
-#our-story p {
-    color: white;
-    margin: 2rem 2rem 2rem 2rem;
-}
-
-#our-story h1 {
-    font-size: 5rem;
-}
-#our-story p {
-    font-size: 2rem;
-}
-
-.plant-types h1 {
-    font-size: 3rem;
-    margin: 0.75rem;
-}
-.plant-types p {
-    font-size: 1.4rem;
-    margin: 0.75rem;
+    height: 75px;
 }
