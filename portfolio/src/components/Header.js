@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import {
@@ -7,7 +7,7 @@ import {
   faMedium,
   faStackOverflow,
 } from "@fortawesome/free-brands-svg-icons";
-import { Box, HStack } from "@chakra-ui/react";
+import { Box, HStack, Link } from "@chakra-ui/react";
 
 const socials = [
   {
@@ -33,6 +33,8 @@ const socials = [
 ];
 
 const Header = () => {
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const navRef = useRef(null);
   const handleClick = (anchor) => () => {
     const id = `${anchor}-section`;
     const element = document.getElementById(id);
@@ -43,6 +45,25 @@ const Header = () => {
       });
     }
   };
+
+  const handleScroll = () => {
+    const position = window.scrollY;
+    console.log(position);
+    if (position > lastScrollY) {
+      console.log("down");
+    } else if (lastScrollY > position) {
+      console.log("up");
+    }
+    setLastScrollY(position);
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
     <Box
@@ -56,7 +77,13 @@ const Header = () => {
       transitionTimingFunction="ease-in-out"
       backgroundColor="#18181b"
     >
-      <Box color="white" maxWidth="1280px" margin="0 auto">
+      <Box
+        color="white"
+        maxWidth="1280px"
+        margin="0 auto"
+        ref={navRef}
+        translateY={0}
+      >
         <HStack
           px={16}
           py={4}
@@ -78,8 +105,12 @@ const Header = () => {
           <nav>
             <HStack spacing={8}>
               {/* Add links to Projects and Contact me section */}
-              <a>Projects</a>
-              <a>Contact Me</a>
+              <Link onClick={handleClick("projects")} cursor="pointer">
+                Projects
+              </Link>
+              <Link onClick={handleClick("contactme")} cursor="pointer">
+                Contact Me
+              </Link>
             </HStack>
           </nav>
         </HStack>
