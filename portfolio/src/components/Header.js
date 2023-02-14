@@ -33,8 +33,28 @@ const socials = [
 ];
 
 const Header = () => {
-  const [lastScrollY, setLastScrollY] = useState(0);
   const navRef = useRef(null);
+
+  useEffect(() => {
+    let lastScrollPos = window.scrollY;
+    const handleScroll = () => {
+      const currScrollPos = window.scrollY;
+      const navElement = navRef.current;
+
+      if (lastScrollPos > currScrollPos) {
+        navElement.style.transform = "translateY(0)";
+      } else {
+        navElement.style.transform = "translateY(-200px)";
+      }
+      lastScrollPos = currScrollPos;
+    };
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   const handleClick = (anchor) => () => {
     const id = `${anchor}-section`;
     const element = document.getElementById(id);
@@ -45,25 +65,6 @@ const Header = () => {
       });
     }
   };
-
-  const handleScroll = () => {
-    const position = window.scrollY;
-    console.log(position);
-    if (position > lastScrollY) {
-      console.log("down");
-    } else if (lastScrollY > position) {
-      console.log("up");
-    }
-    setLastScrollY(position);
-  };
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
 
   return (
     <Box
@@ -76,14 +77,9 @@ const Header = () => {
       transitionDuration=".3s"
       transitionTimingFunction="ease-in-out"
       backgroundColor="#18181b"
+      ref={navRef}
     >
-      <Box
-        color="white"
-        maxWidth="1280px"
-        margin="0 auto"
-        ref={navRef}
-        translateY={0}
-      >
+      <Box color="white" maxWidth="1280px" margin="0 auto">
         <HStack
           px={16}
           py={4}
