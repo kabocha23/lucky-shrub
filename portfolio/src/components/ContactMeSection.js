@@ -29,11 +29,7 @@ const LandingSection = () => {
       comment: "",
     },
     onSubmit: (values) => {
-      useEffect(() => {
-        console.log(values);
-      });
-      submit(values);
-      alert(JSON.stringify(values, null, 2));
+      submit("http://meta.com", values);
     },
     validationSchema: Yup.object({
       firstName: Yup.string()
@@ -43,13 +39,18 @@ const LandingSection = () => {
 
       email: Yup.string().email().required("Email is required"),
 
-      type: Yup.string().required("Type is required"),
-
       comment: Yup.string()
         .min(10, "Too Short!")
         .required("Comment is required"),
     }),
   });
+
+  useEffect(() => {
+    if (response) {
+      console.log(response, "- Has changed");
+      onOpen(response.type, response.message);
+    }
+  }, [response]);
 
   return (
     <FullScreenSection
